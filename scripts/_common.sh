@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #=================================================
-# COMMON VARIABLES
+# COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
 APPLITYPE="lucterios.standard"
@@ -26,12 +26,12 @@ function refresh_collect()
 {
     pushd $install_dir
     venv/bin/python3 manage_inst-${app}.py collectstatic --noinput -l
-    ynh_secure_remove inst-${app}/static/static
-    ynh_secure_remove inst-${app}/static/tmp
-    ynh_secure_remove inst-${app}/static/usr
-    ynh_secure_remove inst-${app}/static/__pycache__
-    ynh_secure_remove inst-${app}/static/settings.py
-    ynh_secure_remove inst-${app}/static/__init__.py
+    ynh_safe_rm inst-${app}/static/static
+    ynh_safe_rm inst-${app}/static/tmp
+    ynh_safe_rm inst-${app}/static/usr
+    ynh_safe_rm inst-${app}/static/__pycache__
+    ynh_safe_rm inst-${app}/static/settings.py
+    ynh_safe_rm inst-${app}/static/__init__.py
     chown -R ${app}:www-data .
     chmod 750 .
     popd
@@ -40,7 +40,7 @@ function refresh_collect()
 function check_params()
 {
     pushd $install_dir
-    ynh_add_config --template="../conf/diacamma_script.py" --destination="/tmp/diacamma_script.py"
+    ynh_config_add --template="diacamma_script.py" --destination="/tmp/diacamma_script.py"
     venv/bin/python3 manage_inst-${app}.py shell < /tmp/diacamma_script.py
     venv/bin/lucterios_admin.py security -n inst-${app} -e "MODE=0"
     popd

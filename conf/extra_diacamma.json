@@ -23,7 +23,7 @@
     "AUTHENTICATION_BACKENDS" : ["django_auth_ldap3_ad.auth.LDAP3ADBackend"],
     "BACKUP_DIRECTORY": "__ARCHIVEDIR__",
     "BACKUP_POST_RESTORE_SCRIPT": "",
-    "BACKUP_READONLY": False,
+    "BACKUP_READONLY": false,
     "LOGGING" : {
         "version": 1, 
         "disable_existing_loggers": false,

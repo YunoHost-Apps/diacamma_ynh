@@ -16,27 +16,27 @@ source /usr/share/yunohost/helpers
 #=================================================
 # STOP SUPERVISOR SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a supervisor service..."
+ynh_script_progression "Stopping a service..."
 
-supervisorctl stop ${app}
+ynh_systemctl --action=stop
 
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
-ynh_script_progression --message="Updating NGINX web server configuration..."
+ynh_script_progression "Updating NGINX web server configuration..."
 
-ynh_change_url_nginx_config
+ynh_config_change_url_nginx
 
 #=================================================
 # SPECIFIC MODIFICATIONS
 #=================================================
-ynh_script_progression --message="Updating Diacamma configuration..."
+ynh_script_progression "Updating Diacamma configuration..."
 
 pushd $install_dir
-ynh_add_config --template="../conf/extra_diacamma.json" --destination="/tmp/extra.json"
+ynh_config_add --template="extra_diacamma.json" --destination="/tmp/extra.json"
 if [ $archivereadonly -eq 1 ]
 then
-    ynh_replace_special_string '--match_string="BACKUP_READONLY": False,' '--replace_string="BACKUP_READONLY": True,' --target_file=/tmp/extra.json
+    ynh_replace_special_string '--match_string="BACKUP_READONLY": false,' '--replace_string="BACKUP_READONLY": true,' --target_file=/tmp/extra.json
 fi
 if [ "$path" == "/" ]
 then
@@ -56,12 +56,12 @@ refresh_collect
 #=================================================
 # START SUPERVISOR SERVICE
 #=================================================
-ynh_script_progression --message="Starting a supervisor service..."
+ynh_script_progression "Starting a service..."
 
-supervisorctl start ${app}
+ynh_systemctl --action=start
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Change of URL completed for $app" --last
+ynh_script_progression "Change of URL completed for $app" --last

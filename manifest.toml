@@ -6,7 +6,7 @@ name = "Diacamma"
 description.en = "Management application for volunteers (association, condominium)"
 description.fr = "Application de gestion pour les bénévoles (association, copropriété)"
 
-version = "25.07.24.15~ynh1"
+version = "25.07.24.16~ynh1"
 
 maintainers = ["Laurent Gay"]
 
@@ -18,7 +18,8 @@ code = "https://github.com/Diacamma2"
 admindoc = "https://asso.diacamma.org/Docs"
 
 [integration]
-yunohost = '>= 11.2'
+yunohost = ">= 12.0.17"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 ldap = true
@@ -89,6 +90,7 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.data_dir]
 
@@ -100,7 +102,7 @@ ram.runtime = "50M"
     [resources.ports]
     
     [resources.apt]
-    packages = "libxml2-dev,libxslt-dev,libjpeg-dev,libfreetype6,libfreetype6-dev,zlib1g-dev,libpq-dev,python3-full,python3-pip,python3-dev,python3-tk,python3-pil,python3-venv,build-essential,pkg-config,postgresql,supervisor,jq"
+    packages = "libxml2-dev,libxslt-dev,libjpeg-dev,libfreetype6,libfreetype6-dev,zlib1g-dev,libpq-dev,python3-full,python3-pip,python3-dev,python3-tk,python3-pil,python3-venv,build-essential,pkg-config,postgresql,jq"
 
     [resources.database]
     type = "postgresql"
