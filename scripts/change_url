@@ -30,9 +30,14 @@ ynh_change_url_nginx_config
 #=================================================
 # SPECIFIC MODIFICATIONS
 #=================================================
+ynh_script_progression --message="Updating Diacamma configuration..."
 
 pushd $install_dir
 ynh_add_config --template="../conf/extra_diacamma.json" --destination="/tmp/extra.json"
+if [ $archivereadonly -eq 1 ]
+then
+    ynh_replace_special_string '--match_string="BACKUP_READONLY": False,' '--replace_string="BACKUP_READONLY": True,' --target_file=/tmp/extra.json
+fi
 if [ "$path" == "/" ]
 then
     sed -i "/USE_X_FORWARDED_HOST/d" /tmp/extra.json 

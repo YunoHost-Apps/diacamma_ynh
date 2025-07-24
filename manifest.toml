@@ -6,7 +6,7 @@ name = "Diacamma"
 description.en = "Management application for volunteers (association, condominium)"
 description.fr = "Application de gestion pour les bénévoles (association, copropriété)"
 
-version = "24.07.26.11~ynh1"
+version = "25.07.24.15~ynh1"
 
 maintainers = ["Laurent Gay"]
 
@@ -59,14 +59,22 @@ ram.runtime = "50M"
     choices = ["fr","en"]
     default = "fr"
 
-    [install.archive]
-    ask.en = "Archive to upload"
-    ask.fr = "Archive à télécharger"
-    help.en = "Data from this archive will be loaded at installation"
-    help.fr = "Les données de cette archive seront chargées à l'installation"
-    type = "url"
+    [install.archivedir]
+    ask.en = "Archive directory"
+    ask.fr = "Répertoire d'archive"
+    help.en = "Directory where are storaged Diacamma archives (disabled if empty)"
+    help.fr = "Répertoire où sont stocker les archives Diacamma (désactivé si vide)"
+    type = "path"
     optional = true
     default = ""
+
+    [install.archivereadonly]
+    ask.en = "Archive read-only"
+    ask.fr = "Archive en lecture seul"
+    help.en = "If checked, it will be impossible to create or import new archives"
+    help.fr = "Si coché, il sera impossible de créer ou d'importer de nouvelles archives"
+    type = "boolean"
+    default = false
     
     [install.develop]
     ask.en = "Use the development version"
@@ -92,7 +100,7 @@ ram.runtime = "50M"
     [resources.ports]
     
     [resources.apt]
-    packages = "libxml2-dev,libxslt-dev,libjpeg-dev,libfreetype6,libfreetype6-dev,zlib1g-dev,libpq-dev,python3-pip,python3-dev,python3-tk,python3-pil,python3-venv,build-essential,pkg-config,postgresql,supervisor,jq"
+    packages = "libxml2-dev,libxslt-dev,libjpeg-dev,libfreetype6,libfreetype6-dev,zlib1g-dev,libpq-dev,python3-full,python3-pip,python3-dev,python3-tk,python3-pil,python3-venv,build-essential,pkg-config,postgresql,supervisor,jq"
 
     [resources.database]
     type = "postgresql"

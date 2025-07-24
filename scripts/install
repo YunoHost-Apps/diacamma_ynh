@@ -28,17 +28,18 @@ then
     sed -i "/USE_X_FORWARDED_HOST/d" /tmp/extra.json 
     sed -i "/FORCE_SCRIPT_NAME/d" /tmp/extra.json 
 fi
+if [ "$archivedir" != '' ]
+then
+    mkdir -p $archivedir
+    chmod ogu+rw $archivedir
+fi
+if [ $archivereadonly -eq 1 ]
+then
+    ynh_replace_special_string '--match_string="BACKUP_READONLY": False,' '--replace_string="BACKUP_READONLY": True,' --target_file=/tmp/extra.json
+fi
 extra_json=$(jq -c . /tmp/extra.json)
 venv/bin/lucterios_admin.py add -n inst-${app} -p "${APPLITYPE}" -m "${MODULES}" -d "${DATABASE}" -e ''$extra_json''
 popd
-
-if [ ! -z "$archive" ]
-then
-    curl $archive > /tmp/diacamma_archive.lbk
-    pushd $install_dir
-    venv/bin/lucterios_admin.py restore -n inst-${app} -f /tmp/diacamma_archive.lbk
-    popd    
-fi
 
 refresh_collect
 
