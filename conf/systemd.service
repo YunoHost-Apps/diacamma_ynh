@@ -8,10 +8,10 @@ Type=simple
 Restart=always
 RestartSec=1
 User=__APP__
-Group=__APP__
+Group=www-data
 WorkingDirectory=__INSTALL_DIR__/
-Environment=DJANGO_SETTINGS_MODULE='inst-__APP__.settings'
-ExecStart=__INSTALL_DIR__/venv/bin/gunicorn lucterios.framework.wsgi --bind 127.0.0.1:__PORT__ -w 1 --timeout 600 --error-logfile /var/log/__APP__/__APP__.log
+Environment=DJANGO_SETTINGS_MODULE=inst-__APP__.settings
+ExecStart=__INSTALL_DIR__/venv/bin/gunicorn lucterios.framework.wsgi --bind 127.0.0.1:__PORT__ -w 1 --timeout 600
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
 
