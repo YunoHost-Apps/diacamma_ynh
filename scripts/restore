@@ -18,7 +18,7 @@ ynh_script_progression "Restoring system configurations related to $app..."
 
 # This should be a symetric version of what happens in the install script
 
-ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
+ynh_config_add_nginx
 
 ynh_restore "/etc/logrotate.d/$app"
 
@@ -46,6 +46,8 @@ check_params
 # RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
 #=================================================
 ynh_script_progression "Reloading NGINX web server and $app's service..."
+
+ynh_config_add_systemd
 
 ynh_systemctl --action=reload
 

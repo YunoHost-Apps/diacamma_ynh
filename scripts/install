@@ -35,7 +35,7 @@ then
 fi
 if [ $archivereadonly -eq 1 ]
 then
-    ynh_replace_special_string '--match_string="BACKUP_READONLY": false,' '--replace_string="BACKUP_READONLY": true,' --target_file=/tmp/extra.json
+    sed -i 's|"BACKUP_READONLY": false,|"BACKUP_READONLY": true,|g' /tmp/extra.json
 fi
 extra_json=$(jq -c . /tmp/extra.json)
 venv/bin/lucterios_admin.py add -n inst-${app} -p "${APPLITYPE}" -m "${MODULES}" -d "${DATABASE}" -e ''$extra_json''
