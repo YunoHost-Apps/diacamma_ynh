@@ -9,7 +9,12 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Restoring the app main directory..."
 
-ynh_restore "$install_dir"
+ynh_restore "$install_dir/extra_url"
+
+install_in_venv
+
+ynh_restore "$install_dir/inst-${app}"
+ynh_restore "$install_dir/manage_inst-${app}.py"
 
 #=================================================
 # RESTORE SUPERVISOR CONFIGURATIONS

@@ -22,6 +22,28 @@ fi
 # PERSONAL HELPERS
 #=================================================
 
+
+
+function install_in_venv()
+{
+    pushd $install_dir
+    rm -rf venv
+    python3 -m venv venv
+    if [ $develop -eq 1 ]
+    then
+        ynh_config_add --template="extra_url" --destination="./extra_url"
+        pip_option='--extra-index-url https://pypi.diacamma.org/simple'
+    else
+        pip_option=''
+    fi
+    venv/bin/pip3 install -U lucterios lucterios-standard lucterios-contacts lucterios-documents $pip_option 
+    venv/bin/pip3 install -U diacamma-asso diacamma-syndic diacamma-financial $pip_option
+    venv/bin/pip3 install -U gunicorn psycopg2-binary psycopg2 django-auth-ldap3-ad
+    sed -i 's|member=%s|inheritPermission=%s|g' venv/lib/python*/site-packages/django_auth_ldap3_ad/auth.py
+    venv/bin/lucterios_admin.py installed
+    popd
+}
+
 function refresh_collect()
 {
     pushd $install_dir
