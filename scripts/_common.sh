@@ -27,7 +27,7 @@ fi
 function install_in_venv()
 {
     pushd $install_dir
-    rm -rf venv
+    ynh_safe_rm venv
     python3 -m venv venv
     if [ $develop -eq 1 ]
     then
