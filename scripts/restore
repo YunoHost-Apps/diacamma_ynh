@@ -14,6 +14,10 @@ install_in_venv
 ynh_restore "$install_dir/inst-${app}"
 ynh_restore "$install_dir/manage_inst-${app}.py"
 
+pushd $install_dir
+venv/bin/lucterios_admin.py modify -n inst-${app} -d "${DATABASE}"
+popd
+
 #=================================================
 # RESTORE SUPERVISOR CONFIGURATIONS
 #=================================================
