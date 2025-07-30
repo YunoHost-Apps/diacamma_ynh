@@ -15,7 +15,7 @@ ynh_restore "$install_dir/manage_inst-${app}.py"
 ynh_restore "$install_dir/inst-${app}"
 
 pushd $install_dir
-venv/bin/lucterios_admin.py modify -n inst-${app} -d "${DATABASE}"
+venv/bin/lucterios_admin.py modify -n inst-${app} -d "${DATABASE}" > /dev/stderr
 popd
 
 #=================================================
@@ -63,5 +63,10 @@ ynh_systemctl --service=nginx --action=reload
 #=================================================
 # END OF SCRIPT
 #=================================================
+
+ynh_print_info "files = $(ls $install_dir/inst-${app})"
+ynh_print_info "pip = $($install_dir/venv/bin/pip list)"
+ynh_print_info "service = $(cat /etc/systemd/system/${app}.service)"
+ynh_print_info "nginx = $(cat /etc/nginx/conf.d/${domain}.d/${app}.conf)"
 
 ynh_script_progression "Restoration completed for $app"
