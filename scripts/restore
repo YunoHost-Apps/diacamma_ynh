@@ -12,7 +12,7 @@ ynh_script_progression "Restoring the app main directory..."
 install_in_venv
 
 ynh_restore "$install_dir/manage_inst-${app}.py"
-ynh_restore "$install_dir/inst-${app}
+ynh_restore "$install_dir/inst-${app}"
 ynh_restore "$install_dir/inst-${app}/settings.py"
 
 pushd $install_dir
