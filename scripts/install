@@ -27,7 +27,7 @@ then
     sed -i 's|"BACKUP_READONLY": false,|"BACKUP_READONLY": true,|g' /tmp/extra.json
 fi
 extra_json=$(jq -c . /tmp/extra.json)
-venv/bin/lucterios_admin.py add -n inst_${app} -p "${APPLITYPE}" -m "${MODULES}" -d "${DATABASE}" -e ''$extra_json''
+venv/bin/lucterios_admin.py add -n inst-${app} -p "${APPLITYPE}" -m "${MODULES}" -d "${DATABASE}" -e ''$extra_json''
 popd
 
 refresh_collect
