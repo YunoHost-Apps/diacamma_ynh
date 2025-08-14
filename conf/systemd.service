@@ -11,6 +11,7 @@ User=__APP__
 Group=www-data
 WorkingDirectory=__INSTALL_DIR__/
 Environment=DJANGO_SETTINGS_MODULE=inst___APP__.settings
+Environment=PYTHONPATH=__INSTALL_DIR__/
 ExecStart=__INSTALL_DIR__/venv/bin/gunicorn lucterios.framework.wsgi --bind 127.0.0.1:__PORT__ -w 1 --timeout 600
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
