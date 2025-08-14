@@ -14,6 +14,9 @@ install_in_venv
 ynh_restore "$install_dir/manage_inst_${app}.py"
 ynh_restore "$install_dir/inst_${app}"
 
+chmod -R ogu+rw "$install_dir/inst_${app}"
+chmod ogu+x "$install_dir/inst_${app}"
+
 pushd $install_dir
 venv/bin/lucterios_admin.py modif -n inst_${app} -d "${DATABASE}" > /dev/stderr
 popd
