@@ -42,11 +42,11 @@ if [ "$path" == "/" ]
 then
     sed -i "/USE_X_FORWARDED_HOST/d" /tmp/extra.json 
     sed -i "/FORCE_SCRIPT_NAME/d" /tmp/extra.json 
-    sed -i "/USE_X_FORWARDED_HOST/d" $install_dir/inst-${app}/settings.py 
-    sed -i "/FORCE_SCRIPT_NAME/d" $install_dir/inst-${app}/settings.py
+    sed -i "/USE_X_FORWARDED_HOST/d" $install_dir/inst_${app}/settings.py 
+    sed -i "/FORCE_SCRIPT_NAME/d" $install_dir/inst_${app}/settings.py
 fi
 extra_json=$(jq -c . /tmp/extra.json)
-venv/bin/lucterios_admin.py modif -n inst-${app} -e ''$extra_json''
+venv/bin/lucterios_admin.py modif -n inst_${app} -e ''$extra_json''
 popd
 
 update_software

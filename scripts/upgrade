@@ -25,6 +25,15 @@ then
     # Create a dedicated service
     ynh_config_add_systemd
 fi
+if [ -d "${install_dir}/inst-${app}" ]
+then
+    mv "${install_dir}/inst-${app}" "${install_dir}/inst_${app}"
+fi
+if [ -f "${install_dir}/manage_inst-${app}.py" ]
+then
+    mv "${install_dir}/manage_inst-${app}.py" "${install_dir}/manage_inst_${app}.py"
+    ynh_replace --match="inst-${app}.py" --replace="inst_${app}.py" --file="${install_dir}/manage_inst_${app}.py"
+fi
 
 ynh_systemctl --action=stop
 
