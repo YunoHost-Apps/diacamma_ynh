@@ -41,6 +41,12 @@ function install_in_venv()
     venv/bin/pip3 install -U gunicorn psycopg2-binary psycopg2 django-auth-ldap3-ad
     sed -i 's|member=%s|inheritPermission=%s|g' venv/lib/python*/site-packages/django_auth_ldap3_ad/auth.py
     venv/bin/lucterios_admin.py installed
+    chown -R ${app}:www-data "$install_dir/venv"
+    chmod -R ogu+rw "$install_dir/venv"
+    chmod ogu+x "$install_dir/venv"
+    chmod ogu+x "$install_dir/venv/bin"
+    chmod ogu+x "$install_dir/venv/bin/gunicorn"
+    chmod ogu+x "$install_dir/venv/bin/python*"
     popd
 }
 
