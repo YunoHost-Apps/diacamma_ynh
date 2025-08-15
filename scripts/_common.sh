@@ -46,7 +46,6 @@ function install_in_venv()
     chmod ogu+x "$install_dir/venv"
     chmod ogu+x "$install_dir/venv/bin"
     chmod ogu+x "$install_dir/venv/bin/gunicorn"
-    chmod ogu+x "$install_dir/venv/bin/python*"
     popd
 }
 
