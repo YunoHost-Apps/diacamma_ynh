@@ -38,9 +38,6 @@ ynh_restore "/etc/logrotate.d/$app"
 
 ynh_script_progression "Restoring the PostgreSQL database..."
 
-ynh_psql_execute_as_root --sql="DROP DATABASE ${db_name};"
-ynh_psql_execute_as_root --sql="CREATE DATABASE ${db_name};"
-
 # Restore dump
 ynh_psql_db_shell < dbbackup.sql
 
