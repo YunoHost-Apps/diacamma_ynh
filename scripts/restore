@@ -17,10 +17,6 @@ ynh_restore "$install_dir/inst-${app}"
 chmod -R ogu+rw "$install_dir/inst-${app}"
 chmod ogu+x "$install_dir/inst-${app}"
 
-pushd $install_dir
-venv/bin/lucterios_admin.py modif -n inst-${app} -d "${DATABASE}"
-popd
-
 #=================================================
 # RESTORE SUPERVISOR CONFIGURATIONS
 #=================================================
@@ -44,7 +40,11 @@ ynh_psql_db_shell < dbbackup.sql
 #=================================================
 # RESTORE THE APP MAIN DIR
 #=================================================
-ynh_script_progression "Refresh the app main directory..."
+ynh_script_progression "Reload & prepare the app ..."
+
+pushd $install_dir
+venv/bin/lucterios_admin.py modif -n inst-${app} -d "${DATABASE}"
+popd
 
 update_software
 
@@ -66,5 +66,8 @@ ynh_systemctl --service=nginx --action=reload
 #=================================================
 # END OF SCRIPT
 #=================================================
+
+ynh_print_info "bin list = $(ls -la $install_dir/venv/bin)"
+ynh_print_info "pip = $($install_dir/venv/bin/pip list)"
 
 ynh_script_progression "Restoration completed for $app"
