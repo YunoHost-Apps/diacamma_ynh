@@ -46,6 +46,11 @@ pushd $install_dir
 venv/bin/lucterios_admin.py modif -n inst-${app} -d "${DATABASE}"
 popd
 
+# Create a log dir
+mkdir -p /var/log/$app
+touch /var/log/$app/$app.log
+chown -R $app:www-data /var/log/$app/
+
 update_software
 
 refresh_collect
@@ -66,8 +71,5 @@ ynh_systemctl --service=nginx --action=reload
 #=================================================
 # END OF SCRIPT
 #=================================================
-
-ynh_print_info "bin list = $(ls -la $install_dir/venv/bin)"
-ynh_print_info "pip = $($install_dir/venv/bin/pip list)"
 
 ynh_script_progression "Restoration completed for $app"

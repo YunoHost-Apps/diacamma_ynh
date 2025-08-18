@@ -6,7 +6,7 @@ name = "Diacamma"
 description.en = "Management application for volunteers (association, condominium)"
 description.fr = "Application de gestion pour les bénévoles (association, copropriété)"
 
-version = "25.08.16.08~ynh1"
+version = "25.08.18.09~ynh1"
 
 maintainers = ["Laurent Gay"]
 
