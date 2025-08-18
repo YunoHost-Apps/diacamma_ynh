@@ -5,33 +5,44 @@ test_format = 1.0
 [default]
     args.lct_appli = "asso"
     args.language = "fr"
-    args.archive = ""
+    args.archivedir = ""
+    args.archivereadonly = 0
     args.develop = 0
     
 [develop]
     args.lct_appli = "asso"
     args.language = "fr"
-    args.archive = ""
+    args.archivedir = ""
+    args.archivereadonly = 0
     args.develop = 1
     only = ["install.root"]
 
 [syndic]
     args.lct_appli = "syndic"
     args.language = "fr"
-    args.archive = ""
+    args.archivedir = ""
+    args.archivereadonly = 0
     args.develop = 0
     only = ["install.root"]
 
 [english]
     args.lct_appli = "asso"
     args.language = "en"
-    args.archive = ""
+    args.archivedir = ""
+    args.archivereadonly = 0
     args.develop = 0
     only = ["install.root"]
 
 [archive]
     args.lct_appli = "asso"
     args.language = "fr"
-    args.archive = "https://download.sd-libre.fr/archive_asso.lbk"
+    args.archivedir = "/opt/archives"
+    args.archivereadonly = 0
     args.develop = 0
-    only = ["install.root"]
+
+[archivero]
+    args.lct_appli = "asso"
+    args.language = "fr"
+    args.archivedir = "/opt/archives"
+    args.archivereadonly = 1
+    args.develop = 0
