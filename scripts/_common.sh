@@ -22,8 +22,6 @@ fi
 # PERSONAL HELPERS
 #=================================================
 
-
-
 function install_in_venv()
 {
     pushd $install_dir
