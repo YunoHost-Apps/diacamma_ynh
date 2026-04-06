@@ -34,6 +34,7 @@ ynh_script_progression "Updating Diacamma configuration..."
 
 pushd $install_dir
 ynh_config_add --template="extra_diacamma.json" --destination="/tmp/extra.json"
+sed -i "s|$old_domain|$new_domain|g" /tmp/extra.json
 if [ $archivereadonly -eq 1 ]
 then
     sed -i 's|"BACKUP_READONLY": false,|"BACKUP_READONLY": true,|g' /tmp/extra.json
