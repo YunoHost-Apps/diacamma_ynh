@@ -34,7 +34,7 @@ function install_in_venv()
     else
         pip_option=''
     fi
-    venv/bin/pip3 install -U pyqt6-tools $pip_option
+    venv/bin/pip3 install -U pyqt6-tools --with setuptools==69.5.1 $pip_option
     venv/bin/pip3 install -U lucterios lucterios-standard lucterios-contacts lucterios-documents $pip_option 
     venv/bin/pip3 install -U diacamma-asso diacamma-syndic diacamma-financial $pip_option
     venv/bin/pip3 install -U gunicorn psycopg2-binary psycopg2 django-auth-ldap3-ad
