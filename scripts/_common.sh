@@ -78,6 +78,7 @@ function check_params()
 function update_software()
 {
     pushd $install_dir
+    venv/bin/pip3 install -U pyside6
     venv/bin/lucterios_admin.py check
     venv/bin/lucterios_admin.py update
     venv/bin/lucterios_admin.py refreshall
