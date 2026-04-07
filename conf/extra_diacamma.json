@@ -1,6 +1,7 @@
 {
     "LANGUAGE_CODE":"__LANGUAGE__",
     "USE_X_FORWARDED_HOST":true, 
+    "ALLOWED_HOSTS": ["127.0.0.1", "localhost", "__DOMAIN__"],
     "FORCE_SCRIPT_NAME":"__PATH__", 
     "LDAP_SERVERS": [{"host": "127.0.0.1", "port": 389, "use_ssl": false, "get_info": "NONE"}],
     "LDAP_ENGINE" : "OpenLDAP",

@@ -22,8 +22,6 @@ fi
 # PERSONAL HELPERS
 #=================================================
 
-
-
 function install_in_venv()
 {
     pushd $install_dir
@@ -36,6 +34,7 @@ function install_in_venv()
     else
         pip_option=''
     fi
+    venv/bin/pip3 install -U pyside6
     venv/bin/pip3 install -U lucterios lucterios-standard lucterios-contacts lucterios-documents $pip_option 
     venv/bin/pip3 install -U diacamma-asso diacamma-syndic diacamma-financial $pip_option
     venv/bin/pip3 install -U gunicorn psycopg2-binary psycopg2 django-auth-ldap3-ad
@@ -79,6 +78,7 @@ function check_params()
 function update_software()
 {
     pushd $install_dir
+    venv/bin/pip3 install -U pyside6
     venv/bin/lucterios_admin.py check
     venv/bin/lucterios_admin.py update
     venv/bin/lucterios_admin.py refreshall

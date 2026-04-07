@@ -12,7 +12,7 @@ Management application for volunteers (association, condominium)
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://www.diacamma.org)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://asso.diacamma.org)
-[![Version: 25.08.18.09~ynh1](https://img.shields.io/badge/Version-25.08.18.09~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/diacamma/)
+[![Version: 26.04.06.12~ynh1](https://img.shields.io/badge/Version-26.04.06.12~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/diacamma/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/diacamma"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
