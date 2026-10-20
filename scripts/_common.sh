@@ -46,6 +46,9 @@ function install_in_venv()
     chmod ogu+x "$install_dir/venv/bin"
     chmod ogu+x "$install_dir/venv/bin/gunicorn"
     popd
+    
+    sed -i 's/^# *fr_FR.UTF-8 UTF-8/fr_FR.UTF-8 UTF-8/' /etc/locale.gen
+    locale-gen    
 }
 
 function refresh_collect()
